@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-07-29T04:38:52.603Z",
+  "sources": [
+    {
+      "name": "Mizzou",
+      "status": "ok",
+      "count": 442,
+      "request": "https://calendar.missouri.edu/live/json/events/start_date/2026-07-28/end_date/2027-01-24/response_fields/location,summary,event_types,group_title/paginate/100",
+      "note": "Public LiveWhale JSON API; physical locations only."
+    },
+    {
+      "name": "City of Columbia",
+      "status": "ok",
+      "count": 50,
+      "request": "https://www.como.gov/CMS/webcal/ical.php",
+      "note": "Official public iCalendar feed."
+    },
+    {
+      "name": "Columbia Chamber",
+      "status": "ok",
+      "count": 8,
+      "request": "https://business.comochamber.com/events/searchscroll?from=07/28/2026&to=01/24/2027",
+      "note": "Public Chamber calendar cards and detail pages."
+    },
+    {
+      "name": "Ticketmaster",
+      "status": "skipped",
+      "count": 0,
+      "request": "API key not configured",
+      "note": "Optional; enabled with TICKETMASTER_API_KEY."
+    },
+    {
+      "name": "SeatGeek",
+      "status": "skipped",
+      "count": 0,
+      "request": "Client ID not configured",
+      "note": "Optional; enabled with SEATGEEK_CLIENT_ID."
+    }
+  ]
+}

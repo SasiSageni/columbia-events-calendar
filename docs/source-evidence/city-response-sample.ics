@@ -1,0 +1,92 @@
+# Request: GET https://www.como.gov/CMS/webcal/ical.php
+# Response sample:
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//hacksw/handcal//NONSGML v1.0//EN
+BEGIN:VEVENT
+DTSTART;VALUE=DATE-TIME:20260811T173000
+DTEND;VALUE=DATE-TIME:20260811T193000
+CATEGORIES:Interested Parties Meetings
+SUMMARY:Interested Persons Meeting with Electric Utility on Transmission Line Project
+DESCRIPTION:Interested Persons Meeting with Electric Utility on Transmission Line Project
+LOCATION;VALUE=LOCATION:Activity and Recreation Center (ARC), 701 W. Ash St
+URL;VALUE=URI:
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE-TIME:20260811T133000
+DTEND;VALUE=DATE-TIME:20260811T153000
+CATEGORIES:Interested Parties Meetings
+SUMMARY:Interested Persons Meeting with Electric Utility on Transmission Line Project
+DESCRIPTION:Interested Persons Meeting with Electric Utility on Transmission Line Project
+LOCATION;VALUE=LOCATION:Activity and Recreation Center (ARC), 701 W. Ash St
+URL;VALUE=URI:
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE-TIME:20260824T180000
+DTEND;VALUE=DATE-TIME:20260824T180000
+CATEGORIES:Meetings
+SUMMARY:Collegiate Advisory Council Meeting
+DESCRIPTION:Collegiate Advisory Council Meeting
+LOCATION;VALUE=LOCATION:City Hall
+Conference Room 1A/1B
+701 E. Broadway
+Columbia, MO
+URL;VALUE=URI:
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE-TIME:20260806T173000
+DTEND;VALUE=DATE-TIME:20260806T183000
+CATEGORIES:Interested Parties Meetings
+SUMMARY:Interested Parties Meeting for Glenn-Rhonda Stormwater Project
+DESCRIPTION:Interested Parties Meeting for Glenn-Rhonda Stormwater Project
+LOCATION;VALUE=LOCATION:2505 Glenn Drive
+URL;VALUE=URI:
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE-TIME:20260804T100000
+DTEND;VALUE=DATE-TIME:20260804T100000
+CATEGORIES:Meetings
+SUMMARY:Loan and Grant Committee Meeting
+DESCRIPTION:Loan and Grant Committee Meeting
+LOCATION;VALUE=LOCATION:11 N. 7th St, Room A, Columbia, MO
+URL;VALUE=URI:
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE-TIME:20260813T173000
+DTEND;VALUE=DATE-TIME:20260813T183000
+CATEGORIES:Public Events
+SUMMARY:Interested parties meeting - Green Meadows Road and Bethel Street roundabout project
+DESCRIPTION:Interested parties meeting - Green Meadows Road and Bethel Street roundabout project
+LOCATION;VALUE=LOCATION:Room 1A/1B of City Hall, 701 E. Broadway
+URL;VALUE=URI:http://BeHeard.CoMo.gov/Green-Meadows-Bethel-roundabout
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE-TIME:20260812T170000
+DTEND;VALUE=DATE-TIME:20260812T170000
+CATEGORIES:Bid Closings
+SUMMARY:RFP 91/2026 On-Site Merchandising Services for Gans Creek Classic Event
+DESCRIPTION:RFP 91/2026 On-Site Merchandising Services for Gans Creek Classic Event
+LOCATION;VALUE=LOCATION:701 E Broadway, Columbia, MO 65201
+URL;VALUE=URI:https://columbia.ionwave.net/Event/BidEvent/BidEventDetail.aspx?e=TloOOku-KPTpB38HL8gUQSObsU-obUaC2mQTAIUCWf4
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE-TIME:20260813T080000
+DTEND;VALUE=DATE-TIME:20260813T080000
+CATEGORIES:Meetings
+SUMMARY:Railroad Advisory Board Meeting
+DESCRIPTION:Railroad Advisory Board Meeting
+LOCATION;VALUE=LOCATION:701 E Broadway
+Columbia, Mo
+Conference Room 1C
+URL;VALUE=URI:
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE-TIME:20260731T170000
+DTEND;VALUE=DATE-TIME:20260731T170000
+CATEGORIES:Bid Closings
+SUMMARY:RFP 36/2026 Mowing and Landscaping Services
+DESCRIPTION:RFP 36/2026 Mowing and Landscaping Services
+LOCATION;VALUE=LOCATION:701 E Broadway, Columbia, MO 65201
+URL;VALUE=URI:https://columbia.ionwave.net/Event/BidEvent/BidEventResponse.aspx?e=ZwXe4tosMoNdSL6QTfI4k62BDrUU6Wl3p7XRW-pBwaM
+END:VEVENT
+BEGIN:VEVENT
