@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T03:07:37.057Z",
+  "generatedAt": "2026-07-30T03:17:37.503Z",
   "timezone": "America/Chicago",
   "range": {
     "start": "2026-07-29",
@@ -142,21 +142,6 @@
       "status": "active"
     },
     {
-      "id": "e727d836206cb8e75a",
-      "source": "Visit Columbia",
-      "sourceId": "25475",
-      "title": "CoMo Restaurant Week – Summer 2026",
-      "start": "2026-07-31T13:00:00.000Z",
-      "end": "2026-08-01T04:00:00.000Z",
-      "allDay": false,
-      "venue": "CHECK OUT COMO RESTAURANT WEEK – SUMMER 2026",
-      "address": "CHECK OUT COMO RESTAURANT WEEK – SUMMER 2026",
-      "url": "https://www.visitcolumbiamo.com/event/como-restaurant-week-summer-2026/",
-      "category": "Things to do",
-      "description": "",
-      "status": "active"
-    },
-    {
       "id": "c9be2481d8b82072a5",
       "source": "Visit Columbia",
       "sourceId": "25142",
@@ -167,6 +152,21 @@
       "venue": "CHECK OUT DOG DAYS SIDEWALK SALE",
       "address": "CHECK OUT DOG DAYS SIDEWALK SALE",
       "url": "https://www.visitcolumbiamo.com/event/dog-days-sidewalk-sale-2/",
+      "category": "Things to do",
+      "description": "",
+      "status": "active"
+    },
+    {
+      "id": "e727d836206cb8e75a",
+      "source": "Visit Columbia",
+      "sourceId": "25475",
+      "title": "CoMo Restaurant Week – Summer 2026",
+      "start": "2026-07-31T13:00:00.000Z",
+      "end": "2026-08-01T04:00:00.000Z",
+      "allDay": false,
+      "venue": "CHECK OUT COMO RESTAURANT WEEK – SUMMER 2026",
+      "address": "CHECK OUT COMO RESTAURANT WEEK – SUMMER 2026",
+      "url": "https://www.visitcolumbiamo.com/event/como-restaurant-week-summer-2026/",
       "category": "Things to do",
       "description": "",
       "status": "active"
@@ -397,16 +397,16 @@
       "status": "active"
     },
     {
-      "id": "3d5af3855787dddb03",
+      "id": "9c1e58dfc7667f5e22",
       "source": "Visit Columbia",
-      "sourceId": "25148",
-      "title": "Dog Days Sidewalk Sale",
+      "sourceId": "25480",
+      "title": "CoMo Restaurant Week – Summer 2026",
       "start": "2026-08-02T13:00:00.000Z",
-      "end": "2026-08-03T01:00:00.000Z",
+      "end": "2026-08-03T04:00:00.000Z",
       "allDay": false,
-      "venue": "CHECK OUT DOG DAYS SIDEWALK SALE",
-      "address": "CHECK OUT DOG DAYS SIDEWALK SALE",
-      "url": "https://www.visitcolumbiamo.com/event/dog-days-sidewalk-sale-2-3/",
+      "venue": "CHECK OUT COMO RESTAURANT WEEK – SUMMER 2026",
+      "address": "CHECK OUT COMO RESTAURANT WEEK – SUMMER 2026",
+      "url": "https://www.visitcolumbiamo.com/event/como-restaurant-week-summer-2026-2-2/",
       "category": "Things to do",
       "description": "",
       "status": "active"
