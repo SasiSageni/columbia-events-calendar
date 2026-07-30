@@ -1,9 +1,10 @@
 # What's On, Columbia
 
-A source-transparent month calendar for upcoming events in Columbia, Missouri.
-The application combines civic, university, and business calendars into one
-normalized JSON cache. Visitors can filter by source, search by title or venue,
-select a day, and open every event on its original publisher's website.
+A source-transparent Vite + React month calendar for upcoming events in Columbia, Missouri.
+The application combines civic, university, business, tourism, music, and
+nightlife calendars into one normalized JSON cache. Visitors can filter by
+source or interest, search, save events, export them, and open every event on
+its original publisher's website.
 
 ## Live application
 
@@ -11,9 +12,10 @@ The production URL is added here after deployment.
 
 ## What it includes
 
-- Responsive month view with desktop event previews and a compact mobile view
+- Responsive month and list views
 - Day agenda with title, local start time, venue, and original listing link
-- Source toggles and text search
+- Source toggles, quick filters, saved events, and text search
+- Google Calendar and downloadable iCalendar actions
 - America/Chicago timezone handling, including daylight-saving transitions
 - Explicit refresh process that writes to `public/data/events.json`
 - Source request/response samples under `docs/source-evidence/`
@@ -26,10 +28,13 @@ The production URL is added here after deployment.
 | [Mizzou Events](https://calendar.missouri.edu/) | Public LiveWhale JSON API | Campus talks, workshops, arts, and public university events |
 | [City of Columbia](https://www.como.gov/CMS/webcal/) | Public iCalendar feed | Civic meetings, parks programs, and city community events |
 | [Columbia Chamber](https://business.comochamber.com/events/searchscroll) | Public calendar HTML | Business, networking, ribbon-cutting, and community events |
+| [The Blue Note](https://thebluenote.com/) | Official event cards | Concerts, comedy, dance nights, and parties |
+| [Rose Music Hall](https://rosemusichall.com/) | Official event cards | Live music, outdoor shows, movies, and social events |
+| [MyHouse](https://www.myhousecomo.com/) | Public Posh JSON feed | Nightclub and game-day events when published |
+| [Visit Columbia](https://www.visitcolumbiamo.com/events/) | Official tourism calendar | Festivals, entertainment, nightlife, and visitor events |
 
 Ticketmaster and SeatGeek adapters are also implemented. They activate when
-their optional environment variables are supplied, but the application already
-meets the three-source requirement without API keys.
+their optional environment variables are supplied.
 
 ## Architecture
 
@@ -45,7 +50,8 @@ SeatGeek (optional) ───┘       ├─ remove expired/cancelled events
                                              └─> React month calendar
 ```
 
-The cache is committed intentionally. A page load reads one local JSON file
+The cache is committed intentionally in `src/data/events.json`; a public copy is
+also written to `public/data/events.json`. A page load reads one bundled JSON file
 instead of refetching every provider. Refresh failures are isolated by source,
 and the last generated cache remains deployable.
 
@@ -53,7 +59,7 @@ and the last generated cache remains deployable.
 
 Prerequisites:
 
-- Node.js 20.9 or newer
+- Node.js 20.19 or newer
 - npm
 
 ```bash
@@ -62,7 +68,13 @@ npm run refresh
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+While the site is open, the browser asks the Vite development or preview server
+to refresh the upstream event sources every five minutes, then reloads
+`/data/events.json`. The header also offers a manual refresh control. This keeps
+API and collection work on the server instead of exposing credentials or
+cross-origin requests in the browser.
+
+Open the local URL printed by Vite, normally `http://localhost:5173`.
 
 To add the optional ticket providers:
 
@@ -83,12 +95,12 @@ Never commit `.env.local`; it is ignored by Git.
 
 ```bash
 npm test
-npm run lint
 npm run build
 npm audit
 ```
 
-Tests cover HTML cleanup, iCalendar parsing, deterministic identifiers,
+`npm run build` validates and bundles the JSX application into `dist/`. Tests
+cover HTML cleanup, iCalendar parsing, deterministic identifiers,
 deduplication, and Central Time conversion across daylight-saving changes.
 
 ## Refresh behavior
@@ -100,10 +112,12 @@ deduplication, and Central Time conversion across daylight-saving changes.
 3. Parses City of Columbia iCalendar data, including folded lines.
 4. Reads structured timestamps from Chamber event cards and retrieves venue
    information from each original listing.
-5. Converts source records into one schema.
-6. Removes expired and cancelled entries.
-7. Deduplicates matching title/date/venue combinations.
-8. Writes the cache and redacted evidence files.
+5. Reads official venue cards, the MyHouse JSON feed, and Visit Columbia detail
+   pages.
+6. Converts source records into one schema.
+7. Removes expired and cancelled entries.
+8. Deduplicates matching title/date/venue combinations.
+9. Writes the cache and redacted evidence files.
 
 The normalized schema is:
 

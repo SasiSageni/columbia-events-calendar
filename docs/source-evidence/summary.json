@@ -1,26 +1,54 @@
 {
-  "generatedAt": "2026-07-29T04:38:52.603Z",
+  "generatedAt": "2026-07-30T03:07:37.057Z",
   "sources": [
     {
       "name": "Mizzou",
       "status": "ok",
-      "count": 442,
-      "request": "https://calendar.missouri.edu/live/json/events/start_date/2026-07-28/end_date/2027-01-24/response_fields/location,summary,event_types,group_title/paginate/100",
+      "count": 449,
+      "request": "https://calendar.missouri.edu/live/json/events/start_date/2026-07-29/end_date/2027-01-25/response_fields/location,summary,event_types,group_title/paginate/100",
       "note": "Public LiveWhale JSON API; physical locations only."
     },
     {
       "name": "City of Columbia",
       "status": "ok",
-      "count": 50,
+      "count": 47,
       "request": "https://www.como.gov/CMS/webcal/ical.php",
       "note": "Official public iCalendar feed."
     },
     {
       "name": "Columbia Chamber",
       "status": "ok",
-      "count": 8,
-      "request": "https://business.comochamber.com/events/searchscroll?from=07/28/2026&to=01/24/2027",
+      "count": 10,
+      "request": "https://business.comochamber.com/events/searchscroll?from=07/29/2026&to=01/25/2027",
       "note": "Public Chamber calendar cards and detail pages."
+    },
+    {
+      "name": "The Blue Note",
+      "status": "ok",
+      "count": 10,
+      "request": "https://thebluenote.com/",
+      "note": "Official venue event calendar."
+    },
+    {
+      "name": "Rose Music Hall",
+      "status": "ok",
+      "count": 10,
+      "request": "https://rosemusichall.com/",
+      "note": "Official venue event calendar."
+    },
+    {
+      "name": "MyHouse",
+      "status": "ok",
+      "count": 0,
+      "request": "https://posh.vip/api/web/v2/util/group_url/myhouse-1",
+      "note": "Public Posh venue event JSON feed."
+    },
+    {
+      "name": "Visit Columbia",
+      "status": "ok",
+      "count": 15,
+      "request": "https://www.visitcolumbiamo.com/events/",
+      "note": "Official tourism calendar and event details."
     },
     {
       "name": "Ticketmaster",

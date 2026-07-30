@@ -62,6 +62,46 @@ public detail page for its venue. Concurrency is capped at eight requests.
 
 Evidence: [`source-evidence/chamber-response-sample.html`](source-evidence/chamber-response-sample.html)
 
+### 4. The Blue Note
+
+**Result:** Works without a key.
+
+The collector reads the official upcoming-show cards published on the venue
+homepage. Each card contains the event URL, title, venue, occurrence date,
+door/show time, supporting acts, and cancellation status.
+
+Evidence: [`source-evidence/blue-note-response-sample.html`](source-evidence/blue-note-response-sample.html)
+
+### 5. Rose Music Hall
+
+**Result:** Works without a key.
+
+This venue uses the same structured official event-card format as The Blue
+Note. Moved and cancelled listings are excluded.
+
+Evidence: [`source-evidence/rose-music-hall-response-sample.html`](source-evidence/rose-music-hall-response-sample.html)
+
+### 6. MyHouse
+
+**Result:** Public feed works without a key.
+
+The MyHouse website itself requests its events from the public Posh venue JSON
+endpoint. The collector uses UTC start/end fields and filters out historical
+records. The source can legitimately return zero when the venue has not
+published a future Posh event.
+
+Evidence: [`source-evidence/myhouse-response-sample.json`](source-evidence/myhouse-response-sample.json)
+
+### 7. Visit Columbia
+
+**Result:** Works without a key.
+
+The collector reads the official tourism calendar cards and follows their
+detail pages with bounded concurrency to obtain exact occurrence dates, times,
+and addresses. Syndicated venue events are removed by the shared deduplicator.
+
+Evidence: [`source-evidence/visit-columbia-response-sample.html`](source-evidence/visit-columbia-response-sample.html)
+
 ## Optional adapters
 
 ### Ticketmaster Discovery API
@@ -100,15 +140,6 @@ prohibit scraping, crawling, and automated extraction of site content.
 
 It offers relevant event search capabilities, but its unrestricted free access
 is a trial rather than a permanent free API source.
-
-### Visit Columbia tourism calendar
-
-**Result:** Investigated but not needed.
-
-Its public WordPress REST route exposes event posts, but the standard `date`
-field is the post publication date rather than the event occurrence date. The
-occurrence date is rendered separately on detail pages. The three selected
-sources provide cleaner coverage, so this was not added to production.
 
 ## Deduplication
 

@@ -1,0 +1,111 @@
+{
+  "request": "https://posh.vip/api/web/v2/util/group_url/myhouse-1",
+  "response": {
+    "events": [
+      {
+        "id": "69d7e09c9b48786eee26c1f8",
+        "attending": [
+          "1"
+        ],
+        "groupID": "63f84ddfaf90860002d72639",
+        "url": "ryder-cup-ato-vs-delt-1",
+        "lightmode": false,
+        "activityEnabled": false,
+        "name": "Ryder Cup — ATO vs Delt",
+        "flyer": "https://images.posh.vip/originals/69d7e0a59b48786eee26c7a3",
+        "start": "2026-04-18T21:00:00.000Z",
+        "end": "2026-04-19T01:00:00.000Z",
+        "startUtc": "2026-04-19T02:00:00.000Z",
+        "endUtc": "2026-04-19T06:00:00.000Z",
+        "timezone": "America/Chicago",
+        "guestlistEnabled": true,
+        "googleAdsConversionLabels": [],
+        "passwordProtected": false,
+        "accentColor": "#617689",
+        "venue": {
+          "name": "My House Sports Bar & Nightclub",
+          "address": "119 S 7th St, Columbia, MO 65201, USA",
+          "images": [],
+          "googlePlaceId": "ChIJSfvEtsW33IcRup6_l1Jc8xQ"
+        },
+        "paymentPlans": [],
+        "tables": [],
+        "description": "Includes access to private after party at MyHouse and donation!",
+        "lineup": [],
+        "promoCodes": false,
+        "eventTitleFont": "NHGDisplay-Bold",
+        "performanceCategory": "Event Features",
+        "status": "live",
+        "hasPasswordProtectedTickets": false,
+        "ticketGroups": [],
+        "displayEndTime": true,
+        "multiDayDisplay": true,
+        "attendanceDisplayDisabled": false,
+        "displayOnThirdPartySites": true,
+        "isAttendee": false,
+        "isAwaitingApproval": false,
+        "isRSVPEvent": false,
+        "isApprovalOnlyRSVPEvent": false,
+        "isPersonalEvent": false,
+        "groupAvi": "https://images.posh.vip/postreact/images/f64aefe9-1f97-48f8-9f01-9cbe09156762.jpg"
+      },
+      {
+        "id": "69fa4ef80ab54a7214f54b9e",
+        "attending": [
+          "1"
+        ],
+        "groupID": "63f84ddfaf90860002d72639",
+        "url": "fastpass-stop-day-58",
+        "lightmode": false,
+        "activityEnabled": false,
+        "name": "FASTPASS: Stop Day 5/8",
+        "flyer": "https://images.posh.vip/alts/66d7ece280684ae41c7cd4d7/1407x1400.webp",
+        "start": "2026-05-08T10:00:00.000Z",
+        "end": "2026-05-09T04:00:00.000Z",
+        "startUtc": "2026-05-08T15:00:00.000Z",
+        "endUtc": "2026-05-09T09:00:00.000Z",
+        "timezone": "America/Chicago",
+        "youtubeLink": null,
+        "guestlistEnabled": true,
+        "googleAdsConversionLabels": [],
+        "passwordProtected": false,
+        "accentColor": "#e4bc34",
+        "venue": {
+          "name": "MyHouse",
+          "address": "119 S 7th St, Columbia, MO 65201, USA",
+          "images": []
+        },
+        "shortDescription": null,
+        "paymentPlans": [],
+        "tables": [],
+        "description": "Purchase a FastPass to skip the line!",
+        "lineup": [],
+        "promoCodes": false,
+        "displayGroupName": "MyHouse",
+        "displayGroupImage": "https://images.posh.vip/postreact/images/f64aefe9-1f97-48f8-9f01-9cbe09156762.jpg",
+        "eventTitleFont": "Inter-Bold",
+        "performanceCategory": "Lineup",
+        "status": "live",
+        "song": {
+          "albumCover": "",
+          "previewLink": "",
+          "link": "",
+          "name": "",
+          "artist": ""
+        },
+        "hasPasswordProtectedTickets": false,
+        "ticketGroups": [],
+        "displayEndTime": false,
+        "multiDayDisplay": true,
+        "attendanceDisplayDisabled": true,
+        "displayOnThirdPartySites": true,
+        "isAttendee": false,
+        "isAwaitingApproval": false,
+        "isRSVPEvent": false,
+        "isApprovalOnlyRSVPEvent": false,
+        "isPersonalEvent": false,
+        "groupAvi": "https://images.posh.vip/postreact/images/f64aefe9-1f97-48f8-9f01-9cbe09156762.jpg"
+      }
+    ]
+  }
+}

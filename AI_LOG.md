@@ -73,3 +73,36 @@ packages.
 **Checked/fixed:** Upgraded to the current supported Next.js release line and
 overrode patched PostCSS and Sharp versions. Re-ran the audit, tests, type check,
 and production build. No API keys were added to the repository.
+
+## 2026-07-29 — Vite JSX migration
+
+**Asked:** Replace Next.js and TypeScript/TSX with Vite and plain React JSX.
+
+**Got:** A Vite 8 React application with `index.html`, `src/main.jsx`,
+`src/App.jsx`, and a static production bundle in `dist/`.
+
+**Checked/fixed:**
+
+- Removed Next.js routing, server-rendering files, TypeScript configuration, and
+  type-only code.
+- Kept the event refresh pipeline and its Node tests framework-independent.
+- Wrote the cache into `src/data/events.json` for build-time import and retained
+  `public/data/events.json` as a directly inspectable artifact.
+- Reinstalled dependencies and reran the audit, tests, and production build.
+
+## 2026-07-29 — Nightlife source expansion
+
+**Asked:** Keep all existing sources and add sources with concerts, parties,
+nightlife, and social events.
+
+**Got:** Official calendar adapters for The Blue Note and Rose Music Hall,
+MyHouse through the public Posh JSON feed used by its website, and Visit
+Columbia through official listing and detail pages.
+
+**Checked/fixed:**
+
+- Preserved the original Mizzou, City, Chamber, Ticketmaster, and SeatGeek
+  adapters.
+- Added distinct source colors and a Nightlife quick filter.
+- Kept bounded concurrency for tourism detail pages.
+- Preserved last-known records when an individual source refresh fails.

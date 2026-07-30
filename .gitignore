@@ -1,11 +1,7 @@
 node_modules/
-.next/
-out/
+dist/
+.vite/
 .env
 .env.local
 *.log
 .DS_Store
-.open-next/
-.vinext/
-site-archive.tar.gz
-*.tsbuildinfo

@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import {
   chicagoDateKey,
@@ -10,7 +10,8 @@ import {
 } from "./lib/normalize.mjs";
 
 const ROOT = process.cwd();
-const OUT_DIR = path.join(ROOT, "public", "data");
+const OUT_DIR = path.join(ROOT, "src", "data");
+const PUBLIC_OUT_DIR = path.join(ROOT, "public", "data");
 const EVIDENCE_DIR = path.join(ROOT, "docs", "source-evidence");
 const TIMEZONE = "America/Chicago";
 const now = new Date();
@@ -253,6 +254,205 @@ async function fetchChamber() {
   return { events, request: url };
 }
 
+const MONTH_NUMBER = {
+  january: "01",
+  february: "02",
+  march: "03",
+  april: "04",
+  may: "05",
+  june: "06",
+  july: "07",
+  august: "08",
+  september: "09",
+  october: "10",
+  november: "11",
+  december: "12",
+};
+
+function localDateTime(dateText, timeText = "") {
+  const dateMatch = decodeHtml(dateText).match(
+    /([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})/,
+  );
+  if (!dateMatch) return null;
+  const month = MONTH_NUMBER[dateMatch[1].toLowerCase()];
+  if (!month) return null;
+  const timeMatch = decodeHtml(timeText).match(/(\d{1,2})(?::(\d{2}))?\s*(am|pm)/i);
+  let hour = timeMatch ? Number(timeMatch[1]) % 12 : 12;
+  if (timeMatch?.[3].toLowerCase() === "pm") hour += 12;
+  const minute = timeMatch?.[2] ?? "00";
+  return toChicagoIso(
+    `${dateMatch[3]}-${month}-${String(dateMatch[2]).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${minute}:00`,
+  );
+}
+
+function venueEventCards(html) {
+  return html.match(/<article class="event-card[\s\S]*?<\/article>/g) ?? [];
+}
+
+function parseVenueEventCard(block, source, fallbackVenue) {
+  const sourceId = block.match(/\bpost-(\d+)\b/)?.[1];
+  const titleMatch = block.match(
+    /<div class="event-title">[\s\S]*?<a href="([^"]+)">([\s\S]*?)<\/a>/i,
+  );
+  const dateText = block.match(/<div class="event-date">([\s\S]*?)<\/div>/i)?.[1];
+  const timesText = block.match(/<div class="event-times">([\s\S]*?)<\/div>/i)?.[1] ?? "";
+  const showTime =
+    decodeHtml(timesText).match(/Show:\s*([^|]+)/i)?.[1] ??
+    decodeHtml(timesText).match(/Doors:\s*([^|]+)/i)?.[1] ??
+    timesText;
+  if (!sourceId || !titleMatch || !dateText) return null;
+  const title = decodeHtml(titleMatch[2]);
+  const venue =
+    decodeHtml(block.match(/<div class="event-venue">([\s\S]*?)<\/div>/i)?.[1]) ||
+    fallbackVenue;
+  const supportingActs = decodeHtml(
+    block.match(/<div class="event-supporting-acts">([\s\S]*?)<\/div>/i)?.[1],
+  );
+  return {
+    id: stableId(source, sourceId),
+    source,
+    sourceId,
+    title,
+    start: localDateTime(dateText, showTime),
+    end: null,
+    allDay: !/\d/.test(decodeHtml(timesText)),
+    venue,
+    address:
+      source === "The Blue Note"
+        ? "17 N 9th St, Columbia, MO 65201"
+        : "1013 Park Ave, Columbia, MO 65201",
+    url: decodeHtml(titleMatch[1]),
+    category: "Nightlife & live music",
+    description: supportingActs,
+    status: /cancel|moved to/i.test(title) ? "cancelled" : "active",
+  };
+}
+
+async function fetchVenueCalendar({
+  source,
+  url,
+  fallbackVenue,
+  evidenceName,
+}) {
+  const html = await (await request(url)).text();
+  const cards = venueEventCards(html);
+  await writeEvidence(evidenceName, [
+    `<!-- Request: GET ${url} -->`,
+    "<!-- Official event-card sample: -->",
+    cards[0] ?? "<!-- no cards returned -->",
+  ].join("\n"));
+  const events = cards
+    .map((block) => parseVenueEventCard(block, source, fallbackVenue))
+    .filter(Boolean)
+    .filter(activeInRange);
+  return { events, request: url };
+}
+
+async function fetchBlueNote() {
+  return fetchVenueCalendar({
+    source: "The Blue Note",
+    url: "https://thebluenote.com/",
+    fallbackVenue: "The Blue Note",
+    evidenceName: "blue-note-response-sample.html",
+  });
+}
+
+async function fetchRoseMusicHall() {
+  return fetchVenueCalendar({
+    source: "Rose Music Hall",
+    url: "https://rosemusichall.com/",
+    fallbackVenue: "Rose Music Hall",
+    evidenceName: "rose-music-hall-response-sample.html",
+  });
+}
+
+async function fetchMyHouse() {
+  const url = "https://posh.vip/api/web/v2/util/group_url/myhouse-1";
+  const data = await (await request(url)).json();
+  await writeEvidence("myhouse-response-sample.json", {
+    request: url,
+    response: { events: data.events?.slice(-2) ?? [] },
+  });
+  const events = (data.events ?? [])
+    .map((item) => ({
+      id: stableId("MyHouse", item.id),
+      source: "MyHouse",
+      sourceId: String(item.id),
+      title: decodeHtml(item.name),
+      start: item.startUtc || item.start,
+      end: item.endUtc || item.end || null,
+      allDay: false,
+      venue: item.venue?.name || "MyHouse",
+      address: item.venue?.address || "119 S 7th St, Columbia, MO 65201",
+      url: `https://posh.vip/e/${item.url}?t=myhouse-website`,
+      category: "Party & nightlife",
+      description: decodeHtml(item.description),
+      status: /cancel/i.test(item.status) ? "cancelled" : "active",
+    }))
+    .filter(activeInRange);
+  return { events, request: url };
+}
+
+function visitColumbiaCards(html) {
+  return html
+    .split('<div class="search_things">')
+    .slice(1)
+    .map((block) => block.split('<div class="search_things">')[0]);
+}
+
+async function fetchVisitColumbiaDetail(card) {
+  const url = decodeHtml(
+    card.match(/<a href="([^"]+)" class="more-link"/i)?.[1],
+  );
+  if (!url) return null;
+  const html = await (await request(url)).text();
+  const title = decodeHtml(card.match(/<h3>([\s\S]*?)<\/h3>/i)?.[1]);
+  const dateText = html.match(/<div class="event_date">\s*([^<]+)/i)?.[1];
+  const eventTimes = decodeHtml(
+    html.match(/<p class="event_times">([\s\S]*?)<\/p>/i)?.[1] ?? "",
+  );
+  if (!title || !dateText) return null;
+  const startText = eventTimes.split(/\s+to\s+/i)[0];
+  const endText = eventTimes.split(/\s+to\s+/i)[1] ?? "";
+  const start = localDateTime(dateText, startText);
+  const end = endText ? localDateTime(dateText, endText) : null;
+  const venue = decodeHtml(
+    html.match(
+      /class="location_address"[\s\S]*?<a[^>]*>([\s\S]*?)<\/a>/i,
+    )?.[1],
+  );
+  const postId = card.match(/data-postid="(\d+)"/i)?.[1] ?? url;
+  return {
+    id: stableId("Visit Columbia", postId),
+    source: "Visit Columbia",
+    sourceId: String(postId),
+    title,
+    start,
+    end,
+    allDay: !eventTimes,
+    venue: venue || "Columbia, Missouri",
+    address: venue,
+    url,
+    category: "Things to do",
+    description: "",
+    status: /cancel/i.test(title) ? "cancelled" : "active",
+  };
+}
+
+async function fetchVisitColumbia() {
+  const url = "https://www.visitcolumbiamo.com/events/";
+  const html = await (await request(url)).text();
+  const cards = visitColumbiaCards(html).slice(0, 50);
+  await writeEvidence("visit-columbia-response-sample.html", [
+    `<!-- Request: GET ${url} -->`,
+    "<!-- Event listing card sample: -->",
+    cards[0] ?? "<!-- no cards returned -->",
+  ].join("\n"));
+  const parsed = await mapLimited(cards, 6, fetchVisitColumbiaDetail);
+  const events = parsed.filter(Boolean).filter(activeInRange);
+  return { events, request: url };
+}
+
 async function fetchTicketmaster() {
   const apiKey = process.env.TICKETMASTER_API_KEY;
   if (!apiKey) return { skipped: true, events: [], request: "API key not configured" };
@@ -349,12 +549,26 @@ const sourceDefinitions = [
   ["Mizzou", fetchMizzou, "Public LiveWhale JSON API; physical locations only."],
   ["City of Columbia", fetchCity, "Official public iCalendar feed."],
   ["Columbia Chamber", fetchChamber, "Public Chamber calendar cards and detail pages."],
+  ["The Blue Note", fetchBlueNote, "Official venue event calendar."],
+  ["Rose Music Hall", fetchRoseMusicHall, "Official venue event calendar."],
+  ["MyHouse", fetchMyHouse, "Public Posh venue event JSON feed."],
+  ["Visit Columbia", fetchVisitColumbia, "Official tourism calendar and event details."],
   ["Ticketmaster", fetchTicketmaster, "Optional; enabled with TICKETMASTER_API_KEY."],
   ["SeatGeek", fetchSeatGeek, "Optional; enabled with SEATGEEK_CLIENT_ID."],
 ];
 
 await mkdir(OUT_DIR, { recursive: true });
+await mkdir(PUBLIC_OUT_DIR, { recursive: true });
 await mkdir(EVIDENCE_DIR, { recursive: true });
+
+let previousCache = { events: [], sources: [] };
+try {
+  previousCache = JSON.parse(
+    await readFile(path.join(PUBLIC_OUT_DIR, "events.json"), "utf8"),
+  );
+} catch {
+  // A missing or invalid cache is expected on the first run.
+}
 
 const allEvents = [];
 const sources = [];
@@ -373,18 +587,29 @@ for (const [name, fetcher, note] of sourceDefinitions) {
     });
     console.log(result.skipped ? "skipped" : `${result.events.length} events`);
   } catch (error) {
+    const savedEvents = (previousCache.events ?? []).filter(
+      (event) => event.source === name && activeInRange(event),
+    );
+    allEvents.push(...savedEvents);
     sources.push({
       name,
-      status: "error",
-      count: 0,
+      status: savedEvents.length ? "stale" : "error",
+      count: savedEvents.length,
       request: "",
-      note: `${note} Error: ${error.message}`,
+      note: `${note} Refresh failed; ${savedEvents.length ? "showing last saved events" : "no saved events available"}. Error: ${error.message}`,
     });
-    console.log(`failed: ${error.message}`);
+    console.log(
+      `failed: ${error.message}${savedEvents.length ? `; kept ${savedEvents.length} saved events` : ""}`,
+    );
   }
 }
 
 const events = deduplicate(allEvents).sort((a, b) => a.start.localeCompare(b.start));
+for (const source of sources) {
+  if (["ok", "stale"].includes(source.status)) {
+    source.count = events.filter((event) => event.source === source.name).length;
+  }
+}
 const cache = {
   generatedAt: new Date().toISOString(),
   timezone: TIMEZONE,
@@ -398,6 +623,11 @@ await writeFile(
   `${JSON.stringify(cache, null, 2)}\n`,
   "utf8",
 );
+await writeFile(
+  path.join(PUBLIC_OUT_DIR, "events.json"),
+  `${JSON.stringify(cache, null, 2)}\n`,
+  "utf8",
+);
 
 await writeFile(
   path.join(EVIDENCE_DIR, "summary.json"),
@@ -405,4 +635,6 @@ await writeFile(
   "utf8",
 );
 
-console.log(`Wrote ${events.length} deduplicated events to public/data/events.json`);
+console.log(
+  `Wrote ${events.length} deduplicated events to src/data/events.json and public/data/events.json`,
+);
