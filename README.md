@@ -53,11 +53,11 @@ SeatGeek (optional) ───┘       ├─ remove expired/cancelled events
 
 The cache is committed intentionally in `src/data/events.json`; a public copy is
 also written to `public/data/events.json`. That file is the deployment fallback.
-On Vercel, a protected serverless function collects fresh data and stores the
-normalized feed in Upstash Redis. `/data/events.json` is rewritten to a public
-feed function that reads Redis and falls back to the bundled file if storage is
-temporarily unavailable. Refresh failures are isolated by source, and the last
-generated cache remains deployable.
+On Netlify, a scheduled function collects fresh data every five minutes and
+stores the normalized feed in Netlify Blobs. `/data/events.json` is rewritten to
+a public feed function that reads the persistent store and falls back to the
+bundled file if storage is temporarily unavailable. Refresh failures are
+isolated by source, and the last generated cache remains deployable.
 
 ## Run locally
 
@@ -94,7 +94,33 @@ SEATGEEK_CLIENT_ID=...
 
 Never commit `.env.local`; it is ignored by Git.
 
-## Deploy on Vercel with five-minute refreshes
+## Netlify production refresh
+
+The live application uses the configuration in `netlify.toml`:
+
+- `netlify/functions/refresh-events.mjs` runs on `*/5 * * * *`.
+- The collector writes the normalized result to a site-wide Netlify Blob.
+- `netlify/functions/events.mjs` serves that Blob at `/data/events.json`.
+- The committed JSON remains available as a fallback on the first deployment or
+  during a temporary storage failure.
+
+No API key, external scheduler, or database setup is required. Scheduled
+functions run only for the published production deployment. To confirm the first
+run immediately:
+
+1. Open the site in Netlify.
+2. Select **Functions**.
+3. Select **refresh-events**.
+4. Choose **Run now**.
+5. Open
+   [https://whats-on-columbia.netlify.app/data/events.json](https://whats-on-columbia.netlify.app/data/events.json)
+   and verify that `generatedAt` is recent.
+
+Netlify scheduled functions have a 30-second execution limit. The collector keeps
+the last successful events from an individual source when that source is
+temporarily unavailable.
+
+## Optional Vercel deployment
 
 The repository includes `vercel.json`, `/api/events`, and
 `/api/refresh-events`. The Vercel Hobby plan can host the site and functions for

@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import eventsHandler from "../api/events.mjs";
 import refreshHandler from "../api/refresh-events.mjs";
+import netlifyEventsHandler from "../netlify/functions/events.mjs";
+import { config as netlifyRefreshConfig } from "../netlify/functions/refresh-events.mjs";
 
 function createResponse() {
   const headers = new Map();
@@ -50,4 +52,19 @@ test("refresh API rejects unauthenticated requests", async () => {
 
   assert.equal(response.statusCode, 401);
   assert.deepEqual(JSON.parse(response.body), { error: "Unauthorized" });
+});
+
+test("Netlify event API falls back to the bundled cache", async () => {
+  const response = await netlifyEventsHandler(
+    new Request("https://example.com/data/events.json"),
+  );
+  const cache = await response.json();
+
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("x-event-cache"), "deployment-fallback");
+  assert.ok(cache.events.length > 0);
+});
+
+test("Netlify refresh is scheduled every five minutes", () => {
+  assert.equal(netlifyRefreshConfig.schedule, "*/5 * * * *");
 });
