@@ -17,7 +17,8 @@ its original publisher's website.
 - Source toggles, quick filters, saved events, and text search
 - Google Calendar and downloadable iCalendar actions
 - America/Chicago timezone handling, including daylight-saving transitions
-- Explicit refresh process that writes to `public/data/events.json`
+- Five-minute client polling with a persistent production cache
+- Protected Vercel collector endpoint for scheduled upstream refreshes
 - Source request/response samples under `docs/source-evidence/`
 - No database and no client-side calls to third-party event websites
 
@@ -51,9 +52,12 @@ SeatGeek (optional) ───┘       ├─ remove expired/cancelled events
 ```
 
 The cache is committed intentionally in `src/data/events.json`; a public copy is
-also written to `public/data/events.json`. A page load reads one bundled JSON file
-instead of refetching every provider. Refresh failures are isolated by source,
-and the last generated cache remains deployable.
+also written to `public/data/events.json`. That file is the deployment fallback.
+On Vercel, a protected serverless function collects fresh data and stores the
+normalized feed in Upstash Redis. `/data/events.json` is rewritten to a public
+feed function that reads Redis and falls back to the bundled file if storage is
+temporarily unavailable. Refresh failures are isolated by source, and the last
+generated cache remains deployable.
 
 ## Run locally
 
@@ -68,11 +72,10 @@ npm run refresh
 npm run dev
 ```
 
-While the site is open, the browser asks the Vite development or preview server
-to refresh the upstream event sources every five minutes, then reloads
-`/data/events.json`. The header also offers a manual refresh control. This keeps
-API and collection work on the server instead of exposing credentials or
-cross-origin requests in the browser.
+While the site is open, the browser reloads `/data/events.json` every five
+minutes. The header also offers a manual refresh control. In production, upstream
+collection is performed only by the protected server endpoint; provider
+credentials and scraping work are never exposed to the browser.
 
 Open the local URL printed by Vite, normally `http://localhost:5173`.
 
@@ -90,6 +93,35 @@ SEATGEEK_CLIENT_ID=...
 ```
 
 Never commit `.env.local`; it is ignored by Git.
+
+## Deploy on Vercel with five-minute refreshes
+
+The repository includes `vercel.json`, `/api/events`, and
+`/api/refresh-events`. The Vercel Hobby plan can host the site and functions for
+free, but its built-in cron scheduler is limited to one execution per day. A
+free external scheduler is therefore used for the five-minute trigger.
+
+1. Import this GitHub repository into Vercel.
+2. Keep the detected framework as Vite, build command as `npm run build`, and
+   output directory as `dist`.
+3. In the Vercel project, open **Storage**, install **Upstash Redis**, create a
+   free database, and connect it to this project. Vercel supplies
+   `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`.
+4. In **Settings > Environment Variables**, create `CRON_SECRET` with a long,
+   random value. Apply it to Production, Preview, and Development.
+5. Redeploy the project so the storage variables are available to the functions.
+6. Trigger the first refresh with an authenticated request to
+   `https://YOUR-PROJECT.vercel.app/api/refresh-events`. It must include the
+   request header `Authorization: Bearer YOUR_CRON_SECRET`.
+7. Create a free job at [cron-job.org](https://cron-job.org/) using that URL,
+   a five-minute schedule, and the same Authorization header.
+8. Confirm that the job returns HTTP 200 and that
+   `https://YOUR-PROJECT.vercel.app/data/events.json` shows a recent
+   `generatedAt` value.
+
+Do not put `CRON_SECRET` in frontend code, GitHub, a query string, or the
+repository. The refresh function accepts only requests bearing that secret.
+The browser-facing feed contains only public event metadata.
 
 ## Validation
 

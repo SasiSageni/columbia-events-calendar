@@ -9,7 +9,9 @@ import {
   toChicagoIso,
 } from "./lib/normalize.mjs";
 
-const ROOT = process.cwd();
+// Serverless refreshes write into an isolated temporary directory. Local runs
+// keep the existing behavior and update the checked-in cache and evidence.
+const ROOT = process.env.EVENT_CACHE_ROOT || process.cwd();
 const OUT_DIR = path.join(ROOT, "src", "data");
 const PUBLIC_OUT_DIR = path.join(ROOT, "public", "data");
 const EVIDENCE_DIR = path.join(ROOT, "docs", "source-evidence");

@@ -75,7 +75,7 @@
         "custom_speaker_bio",
         "custom_fields"
       ],
-      "response_time": 0.22
+      "response_time": 0.2
     },
     "links": {
       "self": "https://calendar.missouri.edu/live/json/events/start_date/2026-07-29/end_date/2027-01-25/response_fields/location,summary,event_types,group_title/paginate/100",

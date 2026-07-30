@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T03:17:37.503Z",
+  "generatedAt": "2026-07-30T03:37:48.648Z",
   "sources": [
     {
       "name": "Mizzou",
@@ -45,10 +45,10 @@
     },
     {
       "name": "Visit Columbia",
-      "status": "ok",
+      "status": "stale",
       "count": 15,
-      "request": "https://www.visitcolumbiamo.com/events/",
-      "note": "Official tourism calendar and event details."
+      "request": "",
+      "note": "Official tourism calendar and event details. Refresh failed; showing last saved events. Error: 503 Service Unavailable for https://www.visitcolumbiamo.com/events/"
     },
     {
       "name": "Ticketmaster",

@@ -246,12 +246,8 @@ export default function App() {
   const refreshEvents = useCallback(async () => {
     setRefreshState("refreshing");
     try {
-      // In local development/preview this endpoint refreshes every upstream API.
-      // Static hosts may omit it; the public cache is still rechecked below.
-      await fetch(`/api/refresh-events?t=${Date.now()}`, {
-        cache: "no-store",
-      }).catch(() => null);
-
+      // Production collection runs server-side on a protected schedule. The
+      // browser only retrieves the latest normalized cache.
       const response = await fetch(`/data/events.json?t=${Date.now()}`, {
         cache: "no-store",
       });
@@ -275,6 +271,10 @@ export default function App() {
       setNextRefreshAt(Date.now() + REFRESH_INTERVAL);
     }
   }, []);
+
+  useEffect(() => {
+    refreshEvents();
+  }, [refreshEvents]);
 
   useEffect(() => {
     const refreshTimer = window.setInterval(refreshEvents, REFRESH_INTERVAL);
