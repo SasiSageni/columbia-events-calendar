@@ -8,7 +8,7 @@ its original publisher's website.
 
 ## Live application
 
-The production URL is added here after deployment.
+[https://whats-on-columbia.netlify.app/](https://whats-on-columbia.netlify.app/)
 
 ## What it includes
 
