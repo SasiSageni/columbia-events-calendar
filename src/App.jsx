@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import initialCache from "./data/events.json";
+import {
+  buildIcsContent,
+  googleCalendarUrl,
+  weekendDateKeys,
+} from "./lib/calendar.mjs";
 
 const REFRESH_INTERVAL = 5 * 60 * 1000;
 
@@ -93,50 +98,8 @@ function sourceColor(source) {
   return SOURCE_COLORS[source] ?? "#64748b";
 }
 
-function calendarDate(iso) {
-  return new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-}
-
-function googleCalendarUrl(event) {
-  const start = calendarDate(event.start);
-  const end = calendarDate(event.end ?? new Date(new Date(event.start).getTime() + 2 * 60 * 60 * 1000));
-  const params = new URLSearchParams({
-    action: "TEMPLATE",
-    text: event.title,
-    dates: `${start}/${end}`,
-    details: `${event.description || "Event in Columbia, Missouri"}\n\nOriginal listing: ${event.url}`,
-    location: [event.venue, event.address].filter(Boolean).join(", "),
-    ctz: "America/Chicago",
-  });
-  return `https://calendar.google.com/calendar/render?${params}`;
-}
-
-function escapeIcs(value = "") {
-  return String(value)
-    .replace(/\\/g, "\\\\")
-    .replace(/\n/g, "\\n")
-    .replace(/,/g, "\\,")
-    .replace(/;/g, "\\;");
-}
-
 function downloadIcs(event) {
-  const end = event.end ?? new Date(new Date(event.start).getTime() + 2 * 60 * 60 * 1000).toISOString();
-  const content = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//What's On Columbia//Events//EN",
-    "BEGIN:VEVENT",
-    `UID:${escapeIcs(event.id)}@whatsoncolumbia`,
-    `DTSTAMP:${calendarDate(new Date().toISOString())}`,
-    `DTSTART:${calendarDate(event.start)}`,
-    `DTEND:${calendarDate(end)}`,
-    `SUMMARY:${escapeIcs(event.title)}`,
-    `LOCATION:${escapeIcs([event.venue, event.address].filter(Boolean).join(", "))}`,
-    `DESCRIPTION:${escapeIcs(`${event.description || ""}\n${event.url}`)}`,
-    `URL:${escapeIcs(event.url)}`,
-    "END:VEVENT",
-    "END:VCALENDAR",
-  ].join("\r\n");
+  const content = buildIcsContent(event);
   const blobUrl = URL.createObjectURL(new Blob([content], { type: "text/calendar;charset=utf-8" }));
   const link = document.createElement("a");
   link.href = blobUrl;
@@ -293,14 +256,7 @@ export default function App() {
   const visibleEvents = useMemo(() => {
     const normalized = query.trim().toLowerCase();
     const today = chicagoDateKey(new Date().toISOString());
-    const current = new Date();
-    const daysToSaturday = (6 - current.getDay() + 7) % 7;
-    const saturday = new Date(current.getFullYear(), current.getMonth(), current.getDate() + daysToSaturday);
-    const sunday = new Date(saturday.getFullYear(), saturday.getMonth(), saturday.getDate() + 1);
-    const weekendKeys = new Set([
-      chicagoDateKey(saturday.toISOString()),
-      chicagoDateKey(sunday.toISOString()),
-    ]);
+    const weekendKeys = new Set(weekendDateKeys(new Date()));
     return data.events.filter((event) => {
       if (!enabledSources.has(event.source) || event.status === "cancelled") return false;
       const searchable = [event.title, event.venue, event.category, event.description]
@@ -338,7 +294,7 @@ export default function App() {
   const selectedEvents = eventsByDay.get(selectedDay) ?? [];
   const listGroups = useMemo(() => {
     const groups = [];
-    for (const event of visibleEvents.slice(0, 150)) {
+    for (const event of visibleEvents) {
       const key = chicagoDateKey(event.start);
       const last = groups.at(-1);
       if (last?.key === key) last.events.push(event);
@@ -349,6 +305,15 @@ export default function App() {
   const activeSourceCount = data.sources.filter(
     (source) => ["ok", "stale"].includes(source.status),
   ).length;
+  const sourceHealth = data.sources.reduce(
+    (health, source) => {
+      if (source.status === "ok") health.live.push(source.name);
+      if (source.status === "stale") health.stale.push(source.name);
+      if (source.status === "error") health.error.push(source.name);
+      return health;
+    },
+    { live: [], stale: [], error: [] },
+  );
   const todayKey = chicagoDateKey(now.toISOString());
 
   function moveMonth(delta) {
@@ -407,12 +372,12 @@ export default function App() {
           type="button"
           onClick={refreshEvents}
           disabled={refreshState === "refreshing"}
-          title="Refresh event sources now"
+          title="Check for the latest event feed"
         >
           <span className="live-dot" />
           <span className="refresh-copy">
             <strong>
-              {refreshState === "refreshing" ? "Refreshing sources…" : `Next refresh in ${countdown}`}
+              {refreshState === "refreshing" ? "Checking latest feed…" : `Next check in ${countdown}`}
             </strong>
             <small>Updated {formatUpdatedAt(data.generatedAt)}</small>
           </span>
@@ -529,6 +494,31 @@ export default function App() {
             </button>
           ))}
           <span className="results-count">{visibleEvents.length} results</span>
+        </div>
+
+        <div className="source-health" aria-live="polite">
+          <span className="health-updated">
+            Last server update <b>{formatUpdatedAt(data.generatedAt)} CT</b>
+          </span>
+          <span className="health-live">
+            <i /> {sourceHealth.live.length} sources live
+          </span>
+          {sourceHealth.stale.length > 0 && (
+            <span
+              className="health-stale"
+              title={`Using saved data: ${sourceHealth.stale.join(", ")}`}
+            >
+              <i /> {sourceHealth.stale.length} using saved data
+            </span>
+          )}
+          {sourceHealth.error.length > 0 && (
+            <span
+              className="health-error"
+              title={`Unavailable: ${sourceHealth.error.join(", ")}`}
+            >
+              <i /> {sourceHealth.error.length} unavailable
+            </span>
+          )}
         </div>
 
         {view === "month" ? (

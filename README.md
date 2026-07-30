@@ -10,6 +10,8 @@ its original publisher's website.
 
 [https://whats-on-columbia.netlify.app/](https://whats-on-columbia.netlify.app/)
 
+![What's On, Columbia calendar preview](docs/app-preview.png)
+
 ## What it includes
 
 - Responsive month and list views
@@ -120,35 +122,6 @@ Netlify scheduled functions have a 30-second execution limit. The collector keep
 the last successful events from an individual source when that source is
 temporarily unavailable.
 
-## Optional Vercel deployment
-
-The repository includes `vercel.json`, `/api/events`, and
-`/api/refresh-events`. The Vercel Hobby plan can host the site and functions for
-free, but its built-in cron scheduler is limited to one execution per day. A
-free external scheduler is therefore used for the five-minute trigger.
-
-1. Import this GitHub repository into Vercel.
-2. Keep the detected framework as Vite, build command as `npm run build`, and
-   output directory as `dist`.
-3. In the Vercel project, open **Storage**, install **Upstash Redis**, create a
-   free database, and connect it to this project. Vercel supplies
-   `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`.
-4. In **Settings > Environment Variables**, create `CRON_SECRET` with a long,
-   random value. Apply it to Production, Preview, and Development.
-5. Redeploy the project so the storage variables are available to the functions.
-6. Trigger the first refresh with an authenticated request to
-   `https://YOUR-PROJECT.vercel.app/api/refresh-events`. It must include the
-   request header `Authorization: Bearer YOUR_CRON_SECRET`.
-7. Create a free job at [cron-job.org](https://cron-job.org/) using that URL,
-   a five-minute schedule, and the same Authorization header.
-8. Confirm that the job returns HTTP 200 and that
-   `https://YOUR-PROJECT.vercel.app/data/events.json` shows a recent
-   `generatedAt` value.
-
-Do not put `CRON_SECRET` in frontend code, GitHub, a query string, or the
-repository. The refresh function accepts only requests bearing that secret.
-The browser-facing feed contains only public event metadata.
-
 ## Validation
 
 ```bash
@@ -159,7 +132,8 @@ npm audit
 
 `npm run build` validates and bundles the JSX application into `dist/`. Tests
 cover HTML cleanup, iCalendar parsing, deterministic identifiers,
-deduplication, and Central Time conversion across daylight-saving changes.
+cross-source deduplication, all-day and timed calendar exports, Netlify
+fallback behavior, and Central Time conversion across daylight-saving changes.
 
 ## Refresh behavior
 
@@ -174,7 +148,8 @@ deduplication, and Central Time conversion across daylight-saving changes.
    pages.
 6. Converts source records into one schema.
 7. Removes expired and cancelled entries.
-8. Deduplicates matching title/date/venue combinations.
+8. Deduplicates cross-source matches by normalized title, local date, start
+   time, and venue while retaining separate same-day sessions.
 9. Writes the cache and redacted evidence files.
 
 The normalized schema is:

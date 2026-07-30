@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T03:37:48.648Z",
+  "generatedAt": "2026-07-30T04:06:46.292Z",
   "timezone": "America/Chicago",
   "range": {
     "start": "2026-07-29",
@@ -94,6 +94,21 @@
       "url": "https://calendar.missouri.edu/internatonal-programs/event/18644-international-student-workshop-optional-practical-trai",
       "category": "Students",
       "description": "",
+      "status": "active"
+    },
+    {
+      "id": "e3a41dcc263021950d",
+      "source": "City of Columbia",
+      "sourceId": "Budget Town Hall-20260730T173000",
+      "title": "Budget Town Hall",
+      "start": "2026-07-30T22:30:00.000Z",
+      "end": "2026-07-31T00:30:00.000Z",
+      "allDay": false,
+      "venue": "City Hall Conference Rooms 1A/1B",
+      "address": "City Hall Conference Rooms 1A/1B",
+      "url": "https://www.como.gov/CMS/webcal/",
+      "category": "City & community",
+      "description": "Budget Town Hall",
       "status": "active"
     },
     {
@@ -247,6 +262,21 @@
       "status": "active"
     },
     {
+      "id": "9380bfb3c1026cbefc",
+      "source": "Visit Columbia",
+      "sourceId": "25478",
+      "title": "CoMo Restaurant Week – Summer 2026",
+      "start": "2026-08-01T13:00:00.000Z",
+      "end": "2026-08-02T04:00:00.000Z",
+      "allDay": false,
+      "venue": "CHECK OUT COMO RESTAURANT WEEK – SUMMER 2026",
+      "address": "CHECK OUT COMO RESTAURANT WEEK – SUMMER 2026",
+      "url": "https://www.visitcolumbiamo.com/event/como-restaurant-week-summer-2026-2/",
+      "category": "Things to do",
+      "description": "",
+      "status": "active"
+    },
+    {
       "id": "cbda1092046829bba2",
       "source": "Visit Columbia",
       "sourceId": "24622",
@@ -272,21 +302,6 @@
       "venue": "CHECK OUT DOG DAYS SIDEWALK SALE",
       "address": "CHECK OUT DOG DAYS SIDEWALK SALE",
       "url": "https://www.visitcolumbiamo.com/event/dog-days-sidewalk-sale-2-2/",
-      "category": "Things to do",
-      "description": "",
-      "status": "active"
-    },
-    {
-      "id": "9380bfb3c1026cbefc",
-      "source": "Visit Columbia",
-      "sourceId": "25478",
-      "title": "CoMo Restaurant Week – Summer 2026",
-      "start": "2026-08-01T13:00:00.000Z",
-      "end": "2026-08-02T04:00:00.000Z",
-      "allDay": false,
-      "venue": "CHECK OUT COMO RESTAURANT WEEK – SUMMER 2026",
-      "address": "CHECK OUT COMO RESTAURANT WEEK – SUMMER 2026",
-      "url": "https://www.visitcolumbiamo.com/event/como-restaurant-week-summer-2026-2/",
       "category": "Things to do",
       "description": "",
       "status": "active"
@@ -817,6 +832,21 @@
       "status": "active"
     },
     {
+      "id": "fbe122abb79bc04789",
+      "source": "City of Columbia",
+      "sourceId": "Planning and Zoning Commission Meeting-20260806T190000",
+      "title": "Planning and Zoning Commission Meeting",
+      "start": "2026-08-07T00:00:00.000Z",
+      "end": "2026-08-07T00:00:00.000Z",
+      "allDay": false,
+      "venue": "Columbia City Hall",
+      "address": "Columbia City Hall",
+      "url": "https://www.como.gov/CMS/webcal/",
+      "category": "City & community",
+      "description": "Planning and Zoning Commission Meeting",
+      "status": "active"
+    },
+    {
       "id": "ee123dcfeb89e71dcc",
       "source": "The Blue Note",
       "sourceId": "5038",
@@ -1048,6 +1078,21 @@
       "title": "Interested Persons Meeting with Electric Utility on Transmission Line Project",
       "start": "2026-08-11T18:30:00.000Z",
       "end": "2026-08-11T20:30:00.000Z",
+      "allDay": false,
+      "venue": "Activity and Recreation Center (ARC), 701 W. Ash St",
+      "address": "Activity and Recreation Center (ARC), 701 W. Ash St",
+      "url": "https://www.como.gov/CMS/webcal/",
+      "category": "City & community",
+      "description": "Interested Persons Meeting with Electric Utility on Transmission Line Project",
+      "status": "active"
+    },
+    {
+      "id": "8fcb691cd245b3bc51",
+      "source": "City of Columbia",
+      "sourceId": "Interested Persons Meeting with Electric Utility on Transmission Line Project-20260811T173000",
+      "title": "Interested Persons Meeting with Electric Utility on Transmission Line Project",
+      "start": "2026-08-11T22:30:00.000Z",
+      "end": "2026-08-12T00:30:00.000Z",
       "allDay": false,
       "venue": "Activity and Recreation Center (ARC), 701 W. Ash St",
       "address": "Activity and Recreation Center (ARC), 701 W. Ash St",
@@ -1447,16 +1492,16 @@
       "status": "active"
     },
     {
-      "id": "f80f02e8efc8c58494",
+      "id": "3367932d8eb54b2811",
       "source": "Mizzou",
-      "sourceId": "17707",
+      "sourceId": "17631",
       "title": "Family Day at the museum",
       "start": "2026-08-16T18:00:00.000Z",
-      "end": null,
+      "end": "2026-08-16T20:00:00.000Z",
       "allDay": false,
       "venue": "Museum of Art and Archaeology",
       "address": "",
-      "url": "https://calendar.missouri.edu/museum_of_art_and_archaeology/event/17707-family-day-at-the-museum",
+      "url": "https://calendar.missouri.edu/live/events/15901-family-day-at-the-museum",
       "category": "Mizzou Arts, Open to Public, Youth",
       "description": "",
       "status": "active"
@@ -1627,21 +1672,6 @@
       "status": "active"
     },
     {
-      "id": "c2fa8b0e9c7fcb1f89",
-      "source": "Mizzou",
-      "sourceId": "18394",
-      "title": "EO SETUP: Mizzou Latin Dance Basics",
-      "start": "2026-08-19T16:00:00.000Z",
-      "end": "2026-08-19T18:30:00.000Z",
-      "allDay": false,
-      "venue": "Memorial Student Union",
-      "address": "",
-      "url": "https://calendar.missouri.edu/event/18394-eo-setup-mizzou-latin-dance-basics",
-      "category": "Social",
-      "description": "",
-      "status": "active"
-    },
-    {
       "id": "6dd16abefd2b889645",
       "source": "Mizzou",
       "sourceId": "17723",
@@ -1747,21 +1777,6 @@
       "status": "active"
     },
     {
-      "id": "988900e678393c5f7e",
-      "source": "Mizzou",
-      "sourceId": "18565",
-      "title": "Mizzou Latin Dance Basics",
-      "start": "2026-08-19T20:00:00.000Z",
-      "end": "2026-08-19T23:00:00.000Z",
-      "allDay": false,
-      "venue": "Memorial Union room N214 A University of Missouri Columbia Missouri United States",
-      "address": "",
-      "url": "https://engage.missouri.edu/MizzouLatinDance/rsvp?id=449561",
-      "category": "Students",
-      "description": "",
-      "status": "active"
-    },
-    {
       "id": "219741612e1e035a2f",
       "source": "Mizzou",
       "sourceId": "18392",
@@ -1834,21 +1849,6 @@
       "url": "https://calendar.missouri.edu/music/event/18086-fall-2026-music-ensemble-auditions",
       "category": "Faculty, Music, Students",
       "description": "Audition information for Fall 2026 music ensembles and studio placements is now available. Please follow this link to learn more: Fall 2026 Audition Information",
-      "status": "active"
-    },
-    {
-      "id": "3efc7c6d5607a0dcd8",
-      "source": "Mizzou",
-      "sourceId": "16566",
-      "title": "EO SETUP: Graduate Teaching Orientation",
-      "start": "2026-08-20T12:00:00.000Z",
-      "end": "2026-08-20T17:00:00.000Z",
-      "allDay": false,
-      "venue": "Memorial Student Union",
-      "address": "",
-      "url": "https://calendar.missouri.edu/event/16566-eo-setup-graduate-teaching-orientation",
-      "category": "University",
-      "description": "",
       "status": "active"
     },
     {
@@ -2047,6 +2047,21 @@
       "status": "active"
     },
     {
+      "id": "faceaff5c7ebe2d61e",
+      "source": "City of Columbia",
+      "sourceId": "Planning and Zoning Commission Meeting-20260820T190000",
+      "title": "Planning and Zoning Commission Meeting",
+      "start": "2026-08-21T00:00:00.000Z",
+      "end": "2026-08-21T00:00:00.000Z",
+      "allDay": false,
+      "venue": "Columbia City Hall",
+      "address": "Columbia City Hall",
+      "url": "https://www.como.gov/CMS/webcal/",
+      "category": "City & community",
+      "description": "Planning and Zoning Commission Meeting",
+      "status": "active"
+    },
+    {
       "id": "62a4d4b15fdde0ab54",
       "source": "Rose Music Hall",
       "sourceId": "4696",
@@ -2073,81 +2088,6 @@
       "address": "",
       "url": "https://calendar.missouri.edu/event/18632-the-salt-company-sasquatch-hunt",
       "category": "Social, Students",
-      "description": "",
-      "status": "active"
-    },
-    {
-      "id": "a2c11e2f998fe6cd08",
-      "source": "Mizzou",
-      "sourceId": "18633",
-      "title": "The Salt Company: Sasquatch Hunt - Info Booking",
-      "start": "2026-08-21T03:00:00.000Z",
-      "end": "2026-08-21T04:45:00.000Z",
-      "allDay": false,
-      "venue": "Francis Quad",
-      "address": "",
-      "url": "https://calendar.missouri.edu/event/18633-the-salt-company-sasquatch-hunt-info-booking",
-      "category": "Social, Students",
-      "description": "",
-      "status": "active"
-    },
-    {
-      "id": "97c968bb29a265dfd9",
-      "source": "Mizzou",
-      "sourceId": "18634",
-      "title": "The Salt Company: Sasquatch Hunt - Info Booking",
-      "start": "2026-08-21T03:00:00.000Z",
-      "end": "2026-08-21T04:45:00.000Z",
-      "allDay": false,
-      "venue": "Lowry Mall",
-      "address": "",
-      "url": "https://calendar.missouri.edu/event/18634-the-salt-company-sasquatch-hunt-info-booking",
-      "category": "Social, Students",
-      "description": "",
-      "status": "active"
-    },
-    {
-      "id": "fe76e996aa0220536b",
-      "source": "Mizzou",
-      "sourceId": "18635",
-      "title": "The Salt Company: Sasquatch Hunt - Info Booking",
-      "start": "2026-08-21T03:00:00.000Z",
-      "end": "2026-08-21T04:45:00.000Z",
-      "allDay": false,
-      "venue": "Peace Park",
-      "address": "",
-      "url": "https://calendar.missouri.edu/event/18635-the-salt-company-sasquatch-hunt-info-booking",
-      "category": "Social, Students",
-      "description": "",
-      "status": "active"
-    },
-    {
-      "id": "fbb4a39e177eb13157",
-      "source": "Mizzou",
-      "sourceId": "18636",
-      "title": "The Salt Company: Sasquatch Hunt - Info Booking",
-      "start": "2026-08-21T03:00:00.000Z",
-      "end": "2026-08-21T04:45:00.000Z",
-      "allDay": false,
-      "venue": "Kuhlman Court",
-      "address": "",
-      "url": "https://calendar.missouri.edu/event/18636-the-salt-company-sasquatch-hunt-info-booking",
-      "category": "Social, Students",
-      "description": "",
-      "status": "active"
-    },
-    {
-      "id": "304634b354cdb49109",
-      "source": "Mizzou",
-      "sourceId": "18684",
-      "title": "The Salt Company: Sasquatch Hunt",
-      "start": "2026-08-21T03:00:00.000Z",
-      "end": "2026-08-21T04:45:00.000Z",
-      "allDay": false,
-      "venue": "Traditions Plaza University of Missouri Columbia Missouri United States",
-      "address": "",
-      "url": "https://engage.missouri.edu/TheSaltCompany/rsvp?id=449355",
-      "category": "Students",
       "description": "",
       "status": "active"
     },
@@ -2237,21 +2177,6 @@
       "venue": "111 Anheuser Busch Natural Resources Building 1111 Rollins St Columbia MO 65201 United States",
       "address": "",
       "url": "https://engage.missouri.edu/WWL/rsvp?id=449105",
-      "category": "Students",
-      "description": "",
-      "status": "active"
-    },
-    {
-      "id": "f9391bf23c911b7f32",
-      "source": "Mizzou",
-      "sourceId": "18496",
-      "title": "CAFNR Academic Day",
-      "start": "2026-08-21T14:30:00.000Z",
-      "end": "2026-08-21T16:30:00.000Z",
-      "allDay": false,
-      "venue": "Anheuser-Busch Natural Resources Building",
-      "address": "",
-      "url": "https://calendar.missouri.edu/cafnr/event/18496-cafnr-academic-day",
       "category": "Students",
       "description": "",
       "status": "active"
@@ -3147,28 +3072,13 @@
       "sourceId": "18041",
       "title": "First Class: Mizzou’s Academic Convocation",
       "start": "2026-08-23T19:00:00.000Z",
-      "end": null,
+      "end": "2026-08-23T20:00:00.000Z",
       "allDay": false,
       "venue": "Hearnes Center",
       "address": "",
       "url": "https://calendar.missouri.edu/provost/event/first-class-academic-convocation",
       "category": "Academic, Signature Events, Students",
       "description": "First Class is Mizzou’s Academic Convocation for all incoming first-year and transfer students to celebrate the start of their academic journeys and learn how the university community is prepared to support their experiences. Faculty are encouraged to attend to support incoming students. The event will be livestreamed for family and friends.",
-      "status": "active"
-    },
-    {
-      "id": "db50c5fa892ed118f5",
-      "source": "Mizzou",
-      "sourceId": "18171",
-      "title": "First Class: Mizzou’s Academic Convocation",
-      "start": "2026-08-23T19:00:00.000Z",
-      "end": "2026-08-23T20:00:00.000Z",
-      "allDay": false,
-      "venue": "Hearnes Center 700 E Stadium Blvd Columbia MO 65201 United States",
-      "address": "",
-      "url": "https://engage.missouri.edu/WWL/rsvp?id=449335",
-      "category": "Students",
-      "description": "",
       "status": "active"
     },
     {
@@ -3222,28 +3132,13 @@
       "sourceId": "18002",
       "title": "Marching Mizzou Concert on the Quad",
       "start": "2026-08-23T23:45:00.000Z",
-      "end": null,
+      "end": "2026-08-24T00:45:00.000Z",
       "allDay": false,
       "venue": "Francis Quadrangle Plaza",
       "address": "",
       "url": "https://calendar.missouri.edu/music/event/18002-marching-mizzou-concert-on-the-quad",
       "category": "Concerts, Music, Open to Public, Special Events, Students",
       "description": "Join Marching Mizzou for their annual “Concert on the Quad” on the Francis Quadrangle north of Jesse Hall on campus at the University of Missouri.",
-      "status": "active"
-    },
-    {
-      "id": "1cf3cdef794bf8b3d4",
-      "source": "Mizzou",
-      "sourceId": "16183",
-      "title": "Marching Mizzou Concert on the Quad",
-      "start": "2026-08-23T23:45:00.000Z",
-      "end": "2026-08-24T00:45:00.000Z",
-      "allDay": false,
-      "venue": "Francis Quadrangle Columbia MO",
-      "address": "",
-      "url": "https://engage.missouri.edu/WWL/rsvp?id=448246",
-      "category": "Students",
-      "description": "",
       "status": "active"
     },
     {
@@ -3727,21 +3622,6 @@
       "status": "active"
     },
     {
-      "id": "eae4df6c8a38cae1ca",
-      "source": "Mizzou",
-      "sourceId": "16068",
-      "title": "EO SETUP: Fall 2026 Early Level Field Fair",
-      "start": "2026-09-02T13:00:00.000Z",
-      "end": "2026-09-02T20:00:00.000Z",
-      "allDay": false,
-      "venue": "Memorial Student Union",
-      "address": "",
-      "url": "https://calendar.missouri.edu/event/16068-eo-setup-fall-2026-early-level-field-fair",
-      "category": "Students",
-      "description": "",
-      "status": "active"
-    },
-    {
       "id": "2d30fdd16892f8200b",
       "source": "Mizzou",
       "sourceId": "16135",
@@ -3753,21 +3633,6 @@
       "address": "",
       "url": "https://engage.missouri.edu/CampusActivities/rsvp?id=448090",
       "category": "Students",
-      "description": "",
-      "status": "active"
-    },
-    {
-      "id": "623d614de54bcc41b9",
-      "source": "Mizzou",
-      "sourceId": "18524",
-      "title": "EO SETUP: Harvest Hoedown",
-      "start": "2026-09-02T20:00:00.000Z",
-      "end": "2026-09-02T22:00:00.000Z",
-      "allDay": false,
-      "venue": "Kuhlman Court",
-      "address": "",
-      "url": "https://calendar.missouri.edu/event/18524-eo-setup-harvest-hoedown",
-      "category": "Music, Students",
       "description": "",
       "status": "active"
     },
@@ -4127,6 +3992,21 @@
       "venue": "Missouri Theatre",
       "address": "",
       "url": "https://calendar.missouri.edu/concert-series/event/17503-film-friday-breakfast-at-tiffanys",
+      "category": "Faculty, Mizzou Arts, Open to Public, Staff, Students",
+      "description": "",
+      "status": "active"
+    },
+    {
+      "id": "5f5bd7d6e646782ef0",
+      "source": "Mizzou",
+      "sourceId": "17507",
+      "title": "Film Friday: Breakfast at Tiffany’s",
+      "start": "2026-09-12T00:00:00.000Z",
+      "end": null,
+      "allDay": false,
+      "venue": "Missouri Theatre",
+      "address": "",
+      "url": "https://calendar.missouri.edu/concert-series/event/17507-film-friday-breakfast-at-tiffanys",
       "category": "Faculty, Mizzou Arts, Open to Public, Staff, Students",
       "description": "",
       "status": "active"
@@ -5047,21 +4927,6 @@
       "status": "active"
     },
     {
-      "id": "5a878d805133ad3cf2",
-      "source": "Mizzou",
-      "sourceId": "17474",
-      "title": "EO SETUP: Campus Dining Fall `26 Farmers Market",
-      "start": "2026-09-30T13:00:00.000Z",
-      "end": "2026-09-30T14:30:00.000Z",
-      "allDay": false,
-      "venue": "Memorial Student Union",
-      "address": "",
-      "url": "https://calendar.missouri.edu/event/17474-eo-setup-campus-dining-fall-26-farmers-market",
-      "category": "Faculty, Staff, Students",
-      "description": "",
-      "status": "active"
-    },
-    {
       "id": "109576df5fe6ee9f7e",
       "source": "Mizzou",
       "sourceId": "18354",
@@ -5602,6 +5467,21 @@
       "status": "active"
     },
     {
+      "id": "99167647565221a3dc",
+      "source": "Mizzou",
+      "sourceId": "17515",
+      "title": "Film Friday: Hocus Pocus",
+      "start": "2026-10-10T00:00:00.000Z",
+      "end": null,
+      "allDay": false,
+      "venue": "Missouri Theatre",
+      "address": "",
+      "url": "https://calendar.missouri.edu/concert-series/event/17515-film-friday-hocus-pocus",
+      "category": "Faculty, Mizzou Arts, Open to Public, Staff, Students",
+      "description": "",
+      "status": "active"
+    },
+    {
       "id": "d95b944c95ae1bdd05",
       "source": "Mizzou",
       "sourceId": "18121",
@@ -5962,21 +5842,6 @@
       "status": "active"
     },
     {
-      "id": "08dc30bbd06a61b7e0",
-      "source": "Mizzou",
-      "sourceId": "18457",
-      "title": "EO SETUP: Campus Dining Farmers Market",
-      "start": "2026-10-21T02:00:00.000Z",
-      "end": "2026-10-21T04:00:00.000Z",
-      "allDay": false,
-      "venue": "Memorial Student Union",
-      "address": "",
-      "url": "https://calendar.missouri.edu/event/18457-eo-setup-campus-dining-farmers-market",
-      "category": "Alumni, Faculty, Social, Staff, Students",
-      "description": "",
-      "status": "active"
-    },
-    {
       "id": "01917cb68e1cbcc990",
       "source": "Mizzou",
       "sourceId": "18357",
@@ -6127,21 +5992,6 @@
       "status": "active"
     },
     {
-      "id": "69eb22fe7ed07ce6d9",
-      "source": "Mizzou",
-      "sourceId": "16013",
-      "title": "EO SETUP: Plant Science Day Camp",
-      "start": "2026-10-23T22:00:00.000Z",
-      "end": "2026-10-24T01:00:00.000Z",
-      "allDay": false,
-      "venue": "Memorial Student Union",
-      "address": "",
-      "url": "https://calendar.missouri.edu/event/16013-eo-setup-plant-science-day-camp",
-      "category": "Students",
-      "description": "",
-      "status": "active"
-    },
-    {
       "id": "4468c78cf4f65213df",
       "source": "Mizzou",
       "sourceId": "17523",
@@ -6267,7 +6117,7 @@
       "sourceId": "18266",
       "title": "Timothy Howe, Faculty Trombone Recital",
       "start": "2026-10-26T00:30:00.000Z",
-      "end": null,
+      "end": "2026-10-26T01:30:00.000Z",
       "allDay": false,
       "venue": "Sinquefield Music Center",
       "address": "",
@@ -7432,21 +7282,6 @@
       "status": "active"
     },
     {
-      "id": "0de56b203932bfaca4",
-      "source": "Mizzou",
-      "sourceId": "18522",
-      "title": "EO SETUP: Red Cross Club Blood Drive",
-      "start": "2026-11-30T13:00:00.000Z",
-      "end": "2026-11-30T14:30:00.000Z",
-      "allDay": false,
-      "venue": "Memorial Student Union",
-      "address": "",
-      "url": "https://calendar.missouri.edu/event/18522-eo-setup-red-cross-club-blood-drive",
-      "category": "Staff, Students",
-      "description": "",
-      "status": "active"
-    },
-    {
       "id": "d7dee9ac49c015696e",
       "source": "Mizzou",
       "sourceId": "18521",
@@ -7684,6 +7519,21 @@
       "url": "https://calendar.missouri.edu/music/event/18103-hitt-street-harmony-concert",
       "category": "Concerts, Music, Open to Public, Students",
       "description": "Come enjoy a vocal concert by Hitt Street Harmony at Whitmore Recital Hall.",
+      "status": "active"
+    },
+    {
+      "id": "3e462d7252438a6459",
+      "source": "Mizzou",
+      "sourceId": "17545",
+      "title": "Film Friday: The Santa Clause",
+      "start": "2026-12-05T02:00:00.000Z",
+      "end": null,
+      "allDay": false,
+      "venue": "Missouri Theatre",
+      "address": "",
+      "url": "https://calendar.missouri.edu/concert-series/event/17545-film-friday-the-santa-clause",
+      "category": "Faculty, Mizzou Arts, Open to Public, Staff, Students, Youth",
+      "description": "",
       "status": "active"
     },
     {
@@ -8002,21 +7852,6 @@
       "status": "active"
     },
     {
-      "id": "790e6178ba3a50c427",
-      "source": "Mizzou",
-      "sourceId": "18453",
-      "title": "EO SETUP: Naval ROTC Fall Commissioning Ceremony",
-      "start": "2026-12-18T02:00:00.000Z",
-      "end": "2026-12-18T04:00:00.000Z",
-      "allDay": false,
-      "venue": "Memorial Student Union",
-      "address": "",
-      "url": "https://calendar.missouri.edu/event/18453-eo-setup-naval-rotc-fall-commissioning-ceremony",
-      "category": "Alumni, Faculty, Staff, Students",
-      "description": "",
-      "status": "active"
-    },
-    {
       "id": "2fe67a6fbaa767b329",
       "source": "Mizzou",
       "sourceId": "18747",
@@ -8126,14 +7961,14 @@
     {
       "name": "Mizzou",
       "status": "ok",
-      "count": 449,
+      "count": 434,
       "request": "https://calendar.missouri.edu/live/json/events/start_date/2026-07-29/end_date/2027-01-25/response_fields/location,summary,event_types,group_title/paginate/100",
       "note": "Public LiveWhale JSON API; physical locations only."
     },
     {
       "name": "City of Columbia",
       "status": "ok",
-      "count": 47,
+      "count": 51,
       "request": "https://www.como.gov/CMS/webcal/ical.php",
       "note": "Official public iCalendar feed."
     },
@@ -8167,10 +8002,10 @@
     },
     {
       "name": "Visit Columbia",
-      "status": "stale",
+      "status": "ok",
       "count": 15,
-      "request": "",
-      "note": "Official tourism calendar and event details. Refresh failed; showing last saved events. Error: 503 Service Unavailable for https://www.visitcolumbiamo.com/events/"
+      "request": "https://www.visitcolumbiamo.com/events/",
+      "note": "Official tourism calendar and event details."
     },
     {
       "name": "Ticketmaster",

@@ -79,6 +79,7 @@ async function fetchMizzou() {
   const events = pages
     .flatMap((page) => page.data ?? [])
     .filter((item) => item.date_ts)
+    .filter((item) => !/\b(?:eo setup|info booking)\b/i.test(decodeHtml(item.title)))
     .filter((item) => {
       const location = String(item.location ?? "").trim();
       return location && !/virtual|online|zoom/i.test(location);

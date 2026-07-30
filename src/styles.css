@@ -234,6 +234,21 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .quick-filters button:hover { border-color: var(--teal); color: var(--ink); }
 .quick-filters button.active { background: var(--teal); border-color: var(--teal); color: white; box-shadow: 0 5px 15px rgba(47,143,131,.2); }
 .results-count { color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .08em; margin-left: auto; text-transform: uppercase; }
+.source-health {
+  align-items: center;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 9px;
+  gap: 13px;
+  margin: 11px auto 0;
+  max-width: 1440px;
+}
+.source-health span { align-items: center; display: inline-flex; gap: 5px; }
+.source-health b { color: var(--ink); font-weight: 700; }
+.source-health i { background: var(--teal); border-radius: 50%; height: 6px; width: 6px; }
+.source-health .health-stale i { background: var(--yellow); }
+.source-health .health-error i { background: var(--coral); }
 
 .calendar-layout {
   align-items: start;
@@ -406,6 +421,8 @@ footer { align-items: center; background: var(--navy); color: rgba(255,255,255,.
   .source-filters { padding: 13px 14px; }
   .quick-filters { padding: 0 5px; }
   .results-count { margin-left: 4px; width: 100%; }
+  .source-health { padding: 0 7px; }
+  .health-updated { width: 100%; }
   .calendar-layout { gap: 17px; margin-top: 17px; }
   .weekday-row span { font-size: 7px; padding: 10px 2px; text-align: center; }
   .day-cell { min-height: 67px; padding: 5px; }

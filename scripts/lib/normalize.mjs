@@ -144,12 +144,88 @@ export function normalizeTitle(value) {
 }
 
 export function deduplicate(events) {
-  const seen = new Map();
-  for (const event of events.sort((a, b) => a.start.localeCompare(b.start))) {
-    const day = chicagoDateKey(new Date(event.start));
-    const venue = normalizeTitle(event.venue).slice(0, 25);
-    const key = `${normalizeTitle(event.title)}|${day}|${venue}`;
-    if (!seen.has(key)) seen.set(key, event);
+  const result = [];
+  const groups = new Map();
+
+  function venueTokens(value) {
+    const ignored = new Set([
+      "a", "at", "columbia", "missouri", "mo", "of", "room", "st",
+      "street", "the", "united", "university", "states",
+    ]);
+    return new Set(
+      normalizeTitle(value)
+        .split(" ")
+        .filter((token) => token.length > 1 && !ignored.has(token) && !/^\d+$/.test(token)),
+    );
   }
-  return [...seen.values()];
+
+  function sameVenue(left, right) {
+    const a = normalizeTitle(left);
+    const b = normalizeTitle(right);
+    if (!a || !b) return false;
+    if (a === b || (a.length > 7 && b.length > 7 && (a.includes(b) || b.includes(a)))) {
+      return true;
+    }
+    const leftTokens = venueTokens(left);
+    const rightTokens = venueTokens(right);
+    const union = new Set([...leftTokens, ...rightTokens]);
+    const intersection = [...leftTokens].filter((token) => rightTokens.has(token));
+    return union.size > 0 && intersection.length / union.size >= 0.5;
+  }
+
+  function eventQuality(event) {
+    return [
+      event.description?.length ?? 0,
+      event.address ? 120 : 0,
+      event.venue ? 80 : 0,
+      event.end ? 40 : 0,
+      event.url ? 20 : 0,
+    ].reduce((total, value) => total + value, 0);
+  }
+
+  function mergeEvents(left, right) {
+    const [preferred, other] =
+      eventQuality(right) > eventQuality(left) ? [right, left] : [left, right];
+    return {
+      ...other,
+      ...preferred,
+      description:
+        (right.description?.length ?? 0) > (left.description?.length ?? 0)
+          ? right.description
+          : left.description,
+      venue: preferred.venue || other.venue,
+      address: preferred.address || other.address,
+      end: preferred.end || other.end,
+    };
+  }
+
+  function isDuplicate(left, right) {
+    const leftTime = new Date(left.start).getTime();
+    const rightTime = new Date(right.start).getTime();
+    const closeStart = Math.abs(leftTime - rightTime) <= 15 * 60 * 1000;
+    const venuesMatch = sameVenue(left.venue, right.venue);
+
+    if (left.allDay || right.allDay) {
+      return venuesMatch && (left.allDay === right.allDay || left.source !== right.source);
+    }
+    return closeStart;
+  }
+
+  for (const event of [...events].sort((a, b) => a.start.localeCompare(b.start))) {
+    const day = chicagoDateKey(new Date(event.start));
+    const groupKey = `${normalizeTitle(event.title)}|${day}`;
+    const candidateIndexes = groups.get(groupKey) ?? [];
+    const duplicateIndex = candidateIndexes.find((index) =>
+      isDuplicate(result[index], event),
+    );
+
+    if (duplicateIndex === undefined) {
+      candidateIndexes.push(result.length);
+      groups.set(groupKey, candidateIndexes);
+      result.push(event);
+    } else {
+      result[duplicateIndex] = mergeEvents(result[duplicateIndex], event);
+    }
+  }
+  return result;
 }

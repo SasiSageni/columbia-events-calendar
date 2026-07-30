@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-07-30T03:37:48.648Z",
+  "generatedAt": "2026-07-30T04:06:46.292Z",
   "sources": [
     {
       "name": "Mizzou",
       "status": "ok",
-      "count": 449,
+      "count": 434,
       "request": "https://calendar.missouri.edu/live/json/events/start_date/2026-07-29/end_date/2027-01-25/response_fields/location,summary,event_types,group_title/paginate/100",
       "note": "Public LiveWhale JSON API; physical locations only."
     },
     {
       "name": "City of Columbia",
       "status": "ok",
-      "count": 47,
+      "count": 51,
       "request": "https://www.como.gov/CMS/webcal/ical.php",
       "note": "Official public iCalendar feed."
     },
@@ -45,10 +45,10 @@
     },
     {
       "name": "Visit Columbia",
-      "status": "stale",
+      "status": "ok",
       "count": 15,
-      "request": "",
-      "note": "Official tourism calendar and event details. Refresh failed; showing last saved events. Error: 503 Service Unavailable for https://www.visitcolumbiamo.com/events/"
+      "request": "https://www.visitcolumbiamo.com/events/",
+      "note": "Official tourism calendar and event details."
     },
     {
       "name": "Ticketmaster",
